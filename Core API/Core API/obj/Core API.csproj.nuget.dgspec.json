@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Users\\admin\\Desktop\\2020 University\\Semester 3 - Demand Based\\Individual Project\\Project\\db03-individual-project-kristian\\Core API\\Core API\\Core API.csproj": {}
+    "D:\\Users\\admin\\Desktop\\2020 University\\Semester 3 - Demand Based\\Individual Project\\Project\\weatherhoven-backend\\Core API\\Core API\\Core API.csproj": {}
   },
   "projects": {
-    "D:\\Users\\admin\\Desktop\\2020 University\\Semester 3 - Demand Based\\Individual Project\\Project\\db03-individual-project-kristian\\Core API\\Core API\\Core API.csproj": {
+    "D:\\Users\\admin\\Desktop\\2020 University\\Semester 3 - Demand Based\\Individual Project\\Project\\weatherhoven-backend\\Core API\\Core API\\Core API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Users\\admin\\Desktop\\2020 University\\Semester 3 - Demand Based\\Individual Project\\Project\\db03-individual-project-kristian\\Core API\\Core API\\Core API.csproj",
+        "projectUniqueName": "D:\\Users\\admin\\Desktop\\2020 University\\Semester 3 - Demand Based\\Individual Project\\Project\\weatherhoven-backend\\Core API\\Core API\\Core API.csproj",
         "projectName": "Core API",
-        "projectPath": "D:\\Users\\admin\\Desktop\\2020 University\\Semester 3 - Demand Based\\Individual Project\\Project\\db03-individual-project-kristian\\Core API\\Core API\\Core API.csproj",
+        "projectPath": "D:\\Users\\admin\\Desktop\\2020 University\\Semester 3 - Demand Based\\Individual Project\\Project\\weatherhoven-backend\\Core API\\Core API\\Core API.csproj",
         "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "D:\\Users\\admin\\Desktop\\2020 University\\Semester 3 - Demand Based\\Individual Project\\Project\\db03-individual-project-kristian\\Core API\\Core API\\obj\\",
+        "outputPath": "D:\\Users\\admin\\Desktop\\2020 University\\Semester 3 - Demand Based\\Individual Project\\Project\\weatherhoven-backend\\Core API\\Core API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -43,6 +43,10 @@
               "version": "[3.1.8, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[3.1.8, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
               "target": "Package",
               "version": "[3.1.8, )"
             },
