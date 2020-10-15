@@ -22,7 +22,7 @@ namespace Core_API.Data
                 new NewsArticle
                 {
                     UserID="1",
-                    ArticleTitle="Hurricane on the making",
+                    ArticleTitle="Hurricane in the making",
                     ArticleContent="Hurricane Kris is going to hit Florida on the night of...",
                     ArticlePicture="Picture0",
                     DateTimeCreated="2020-10-10-20:55",
@@ -30,7 +30,7 @@ namespace Core_API.Data
                 new NewsArticle
                 {
                     UserID="2",
-                    ArticleTitle="How to avoid Icy roads",
+                    ArticleTitle="How to avoid icy roads",
                     ArticleContent="When the going gets tough the tough get going.",
                     ArticlePicture="Picture1",
                     DateTimeCreated="2020-9-10-20:55",
