@@ -21,6 +21,6 @@ jobs:
         working-directory: ./Core API/Core API
         run: dotnet build --configuration Release --no-restore
       - name: Test
-        working-directory: ./Core API/WeatherHovenTests
+        working-directory: ./Core API/CoreAPITests
         run: dotnet test --no-restore --verbosity normal
         
