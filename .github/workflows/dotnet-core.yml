@@ -20,3 +20,7 @@ jobs:
       - name: Build
         working-directory: ./Core API/Core API
         run: dotnet build --configuration Release --no-restore
+      - name: Test
+        working-directory: ./Core API/Core API.IntegrationTests
+        run: dotnet test --no-restore --verbosity normal
+        
