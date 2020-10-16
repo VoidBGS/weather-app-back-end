@@ -11,9 +11,11 @@ namespace Core_API.Models
         public int ID { get; set; }
 
         public string UserID { get; set; }
+
         public string ArticleTitle { get; set; }
 
         public string ArticleContent { get; set; }
+
         public string ArticlePicture { get; set; }
 
         public string DateTimeCreated { get; set; }
