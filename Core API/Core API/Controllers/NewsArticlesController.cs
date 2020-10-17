@@ -23,37 +23,45 @@ namespace Core_API.Controllers
 
         // GET: api/NewsArticles
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<NewsArticle>>> GetNewsArticles()
+        public async Task<ActionResult<IEnumerable<NewsArticleViewModel>>> GetNewsArticles()
         {
-            return await _context.NewsArticles.ToListAsync();
+            return await _context.NewsArticles.Select(x => NewsArticleToViewModel(x, _context)).ToListAsync();
         }
 
         // GET: api/NewsArticles/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<NewsArticle>> GetNewsArticle(int id)
+        public async Task<ActionResult<NewsArticleViewModel>> GetNewsArticle(int id)
         {
-            var newsArticle = await _context.NewsArticles.FindAsync(id);
+            var newsArticle = await _context.NewsArticles.Where(x => x.ID == id).FirstOrDefaultAsync();
 
             if (newsArticle == null)
             {
                 return NotFound();
             }
 
-            return newsArticle;
+            return NewsArticleToViewModel(newsArticle, _context);
         }
 
         // PUT: api/NewsArticles/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutNewsArticle(int id, NewsArticle newsArticle)
+        public async Task<IActionResult> PutNewsArticle(int id, NewsArticleViewModel newsArticleViewModel)
         {
-            if (id != newsArticle.ID)
+            if (id != newsArticleViewModel.ID)
             {
                 return BadRequest();
             }
+            var newsArticle = await _context.NewsArticles.FindAsync(id);
+            if(newsArticle == null)
+            {
+                return NotFound();
+            }
 
-            _context.Entry(newsArticle).State = EntityState.Modified;
+            newsArticle.ArticleTitle = newsArticleViewModel.ArticleTitle;
+            newsArticle.ArticleContent = newsArticleViewModel.ArticleContent;
+            newsArticle.ArticlePicture = newsArticleViewModel.ArticlePicture;
+            newsArticle.UserID = "1";
 
             try
             {
@@ -78,17 +86,26 @@ namespace Core_API.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<NewsArticle>> PostNewsArticle(NewsArticle newsArticle)
+        public async Task<ActionResult<NewsArticleViewModel>> PostNewsArticle(NewsArticleViewModel newsArticleViewModel)
         {
+            var newsArticle = new NewsArticle
+            {
+                UserID = "1",
+                ArticleTitle = newsArticleViewModel.ArticleTitle,
+                ArticleContent = newsArticleViewModel.ArticleContent,
+                ArticlePicture = newsArticleViewModel.ArticlePicture,
+                DateTimeCreated = DateTime.Now.ToString()
+            };
+
             _context.NewsArticles.Add(newsArticle);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetNewsArticle", new { id = newsArticle.ID }, newsArticle);
+            return CreatedAtAction(nameof(GetNewsArticle), new { id = newsArticleViewModel.ID }, NewsArticleToViewModel(newsArticle, _context));
         }
 
         // DELETE: api/NewsArticles/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<NewsArticle>> DeleteNewsArticle(int id)
+        public async Task<ActionResult<NewsArticleViewModel>> DeleteNewsArticle(int id)
         {
             var newsArticle = await _context.NewsArticles.FindAsync(id);
             if (newsArticle == null)
@@ -99,12 +116,22 @@ namespace Core_API.Controllers
             _context.NewsArticles.Remove(newsArticle);
             await _context.SaveChangesAsync();
 
-            return newsArticle;
+            return NewsArticleToViewModel(newsArticle, _context);
         }
 
         private bool NewsArticleExists(int id)
         {
             return _context.NewsArticles.Any(e => e.ID == id);
         }
+
+        private static NewsArticleViewModel NewsArticleToViewModel(NewsArticle newsArticle, NewsArticleContext _context) =>
+            new NewsArticleViewModel
+            {
+                ID = newsArticle.ID,
+                ArticleTitle = newsArticle.ArticleTitle,
+                ArticleContent = newsArticle.ArticleContent,
+                ArticlePicture = newsArticle.ArticlePicture,
+                DateTimeCreated = newsArticle.DateTimeCreated
+            };
     }
 }
