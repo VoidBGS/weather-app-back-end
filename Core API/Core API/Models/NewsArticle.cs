@@ -19,5 +19,7 @@ namespace Core_API.Models
         public string ArticlePicture { get; set; }
 
         public string DateTimeCreated { get; set; }
+
+        public DateTime TimeStampUploaded { get; set; }
     }
 }

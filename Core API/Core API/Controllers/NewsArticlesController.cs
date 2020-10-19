@@ -94,7 +94,9 @@ namespace Core_API.Controllers
                 ArticleTitle = newsArticleViewModel.ArticleTitle,
                 ArticleContent = newsArticleViewModel.ArticleContent,
                 ArticlePicture = newsArticleViewModel.ArticlePicture,
-                DateTimeCreated = DateTime.Now.ToString()
+                DateTimeCreated = DateTime.Now.ToString("hh:mm | dd-MM-yyyy"),
+                TimeStampUploaded = DateTime.Now
+
             };
 
             _context.NewsArticles.Add(newsArticle);
@@ -131,7 +133,8 @@ namespace Core_API.Controllers
                 ArticleTitle = newsArticle.ArticleTitle,
                 ArticleContent = newsArticle.ArticleContent,
                 ArticlePicture = newsArticle.ArticlePicture,
-                DateTimeCreated = newsArticle.DateTimeCreated
+                DateTimeCreated = newsArticle.DateTimeCreated,
+                TimeStampUploaded = newsArticle.TimeStampUploaded
             };
     }
 }

@@ -22,18 +22,29 @@ namespace Core_API.Data
                 new NewsArticle
                 {
                     UserID="1",
-                    ArticleTitle="Hurricane in the making",
-                    ArticleContent="Hurricane Kris is going to hit Florida on the night of...",
-                    ArticlePicture="Picture0",
-                    DateTimeCreated="2020-10-10-20:55",
+                    ArticleTitle="Victoria National Park has been livid with...",
+                    ArticleContent="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                    ArticlePicture="https://i.ibb.co/6sjV0gQ/Mountain-and-waterfall-at-Logan-Pass-at-sunset-in-Glacier-National-Park-Montana.jpg",
+                    DateTimeCreated=DateTime.Now.ToString("hh:mm | dd-MM-yyyy"),
+                    TimeStampUploaded=DateTime.Now,
                 },
                 new NewsArticle
                 {
                     UserID="2",
+                    ArticleTitle="The forests South of Georgia have started to gain their fall colors",
+                    ArticleContent="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum..",
+                    ArticlePicture="https://i.ibb.co/hC1kxPZ/trees.jpg",
+                    DateTimeCreated=DateTime.Now.ToString("hh:mm | dd-MM-yyyy"),
+                    TimeStampUploaded=DateTime.Now,
+                },
+                new NewsArticle
+                {
+                    UserID="3",
                     ArticleTitle="How to avoid icy roads",
-                    ArticleContent="When the going gets tough the tough get going.",
-                    ArticlePicture="Picture1",
-                    DateTimeCreated="2020-9-10-20:55",
+                    ArticleContent="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum..",
+                    ArticlePicture="https://i.ibb.co/6ng9c19/road1.webp",
+                    DateTimeCreated=DateTime.Now.ToString("hh:mm | dd-MM-yyyy"),
+                    TimeStampUploaded=DateTime.Now,
                 },
             };
             foreach (NewsArticle newsArticle in newsArticles)
