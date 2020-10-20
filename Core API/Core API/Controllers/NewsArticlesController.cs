@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Core_API.Data;
 using Core_API.Models;
+using Core_API.Mappers;
 
 namespace Core_API.Controllers
 {
@@ -25,7 +26,7 @@ namespace Core_API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<NewsArticleViewModel>>> GetNewsArticles()
         {
-            return await _context.NewsArticles.Select(x => NewsArticleToViewModel(x, _context)).ToListAsync();
+            return await _context.NewsArticles.Select(x => (x.NewsArticleToViewModel())).ToListAsync();
         }
 
         // GET: api/NewsArticles/5
@@ -39,7 +40,7 @@ namespace Core_API.Controllers
                 return NotFound();
             }
 
-            return NewsArticleToViewModel(newsArticle, _context);
+            return newsArticle.NewsArticleToViewModel();
         }
 
         // PUT: api/NewsArticles/5
@@ -102,7 +103,7 @@ namespace Core_API.Controllers
             _context.NewsArticles.Add(newsArticle);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetNewsArticle), new { id = newsArticleViewModel.ID }, NewsArticleToViewModel(newsArticle, _context));
+            return CreatedAtAction(nameof(GetNewsArticle), new { id = newsArticleViewModel.ID }, newsArticle.NewsArticleToViewModel());
         }
 
         // DELETE: api/NewsArticles/5
@@ -118,23 +119,12 @@ namespace Core_API.Controllers
             _context.NewsArticles.Remove(newsArticle);
             await _context.SaveChangesAsync();
 
-            return NewsArticleToViewModel(newsArticle, _context);
+            return newsArticle.NewsArticleToViewModel();
         }
 
         private bool NewsArticleExists(int id)
         {
             return _context.NewsArticles.Any(e => e.ID == id);
         }
-
-        private static NewsArticleViewModel NewsArticleToViewModel(NewsArticle newsArticle, NewsArticleContext _context) =>
-            new NewsArticleViewModel
-            {
-                ID = newsArticle.ID,
-                ArticleTitle = newsArticle.ArticleTitle,
-                ArticleContent = newsArticle.ArticleContent,
-                ArticlePicture = newsArticle.ArticlePicture,
-                DateTimeCreated = newsArticle.DateTimeCreated,
-                TimeStampUploaded = newsArticle.TimeStampUploaded
-            };
     }
 }

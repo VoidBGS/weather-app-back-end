@@ -45,17 +45,19 @@ namespace CoreAPITests
 
             Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
         }
-        //[Fact]
-        //public async Task Put_Should_Change_One_NewsArticle()
-        //{
-        //    string jsonData = @"{  
-        //    'FirstName':'Jignesh',  
-        //    'LastName':'Trivedi'  
-        //    }";
-        //    var stringContent = new StringContent(json, Encoding.UTF8, "application/json");
-        //    var response = await Client.PutAsync("api/NewsArticles/1", content)
+        [Fact]
+        public async Task Put_Should_Change_One_NewsArticle()
+        {
+            string jsonData = @"{  
+            'ArticleTitle':'Test',  
+            'ArticleContent':'ContentTest',
+            'ArticleContent':'PictureTest' 
+            }";
 
-        //    Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
-        //}
+            var stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
+            var response = await Client.PutAsync("api/NewsArticles/1", stringContent);
+
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+        }
     }
 }
