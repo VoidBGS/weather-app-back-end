@@ -1,89 +1,85 @@
 using System;
 using Xunit;
 using Microsoft.AspNetCore.Mvc.Testing;
-using System.Net.Http;
+using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using Newtonsoft;
+using System.Text;
 using System.Threading.Tasks;
 using System.Net;
-using System.Text;
+using Core_API.Models;
+using FluentAssertions;
+using System.Net.Http;
 
 namespace CoreAPITests
 {
-    public class NewsArticleControllerTests: IClassFixture<WebApplicationFactory<Core_API.Startup>>
+    public class NewsArticleControllerTests: IntegrationTest
     {
-        private readonly WebApplicationFactory<Core_API.Startup> _factory;
-        public NewsArticleControllerTests(WebApplicationFactory<Core_API.Startup> factory)
-        {
-            _factory = factory;
-        }
-
         [Fact]
         public async Task Get_Should_Retrieve_NewsArticle()
         {
-            var client = _factory.CreateClient();
+            var response = await Client.GetAsync("api/NewsArticles");
 
-            var response = await client.GetAsync("api/NewsArticles");
-
-            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            response.StatusCode.Should().Be(HttpStatusCode.OK);
         }
-
         [Fact]
         public async Task Get_Should_Not_Retrieve_NewsArticle()
         {
-            var client = _factory.CreateClient();
+            var response = await Client.GetAsync("api/News");
 
-            var response = await client.GetAsync("api/News");
-
-            Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
+            response.StatusCode.Should().Be(HttpStatusCode.NotFound);
         }
         [Fact]
         public async Task Get_Should_Retrieve_One_NewsArticle()
         {
-            var client = _factory.CreateClient();
+            var response = await Client.GetAsync("api/NewsArticles/1");
 
-            var response = await client.GetAsync("api/NewsArticles/1");
-
-            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+            response.StatusCode.Should().Be(HttpStatusCode.OK);
         }
         [Fact]
         public async Task Get_Should_Not_Retrieve_One_NewsArticle()
         {
-            var client = _factory.CreateClient();
+            var response = await Client.GetAsync("api/NewsArticles/1544545444213");
 
-            var response = await client.GetAsync("api/NewsArticles/1544545444213");
-
-            Assert.Equal(HttpStatusCode.BadRequest, response.StatusCode);
+            response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
         }
         [Fact]
-        public async Task Post_Should_Succeed_One_NewsArticle()
+        public async Task Post_Should_Succeed_NewsArticle()
         {
-            var client = _factory.CreateClient();
-            string jsonData = @"{  
-            'ArticleTitle':'Test',  
-            'ArticleContent':'ContentTest',
-            'ArticleContent':'PictureTest' 
-            }";
-            var stringContent = new StringContent(jsonData);
+            var response = await Client.PostAsync("api/NewsArticles", new StringContent(JsonConvert.SerializeObject(new NewsArticle()
+            {
+                ArticleTitle = "TestTitle",
+                ArticleContent = "TestConent",
+                ArticlePicture = "TestPicture"
+            }), Encoding.UTF8, "application/json"));
 
-            var response = await client.PostAsync("api/NewsArticles", stringContent);
+            response.EnsureSuccessStatusCode();
 
-            Assert.Equal(HttpStatusCode.Created, response.StatusCode);
+            response.StatusCode.Should().Be(HttpStatusCode.Created);
         }
         [Fact]
-        public async Task Put_Should_Change_One_NewsArticle()
+        public async Task Put_Should_Succeed_NewsArticle()
         {
-            var client = _factory.CreateClient();
+            var response = await Client.PutAsync("api/NewsArticles/1", new StringContent(JsonConvert.SerializeObject(new NewsArticle()
+            {
+                ID = 1,
+                ArticleTitle = "TestTitle",
+                ArticleContent = "TestConent",
+                ArticlePicture = "TestPicture"
+            }), Encoding.UTF8, "application/json"));
 
-            string jsonData = @"{  
-            'id':'1',
-            'ArticleTitle':'Test',  
-            'ArticleContent':'ContentTest',
-            'ArticleContent':'PictureTest' 
-            }";
+            response.EnsureSuccessStatusCode();
 
-            var stringContent = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var response = await client.PutAsync("api/NewsArticles/1", stringContent);
+            response.StatusCode.Should().Be(HttpStatusCode.NoContent);
+        }
+        [Fact]
+        public async Task Delete_Should_Succeed_NewsArticle()
+        {
+            var response = await Client.DeleteAsync("api/NewsArticles/1");
 
-            Assert.Equal(HttpStatusCode.NoContent, response.StatusCode);
+            response.EnsureSuccessStatusCode();
+
+            response.StatusCode.Should().Be(HttpStatusCode.OK);
         }
     }
 }
