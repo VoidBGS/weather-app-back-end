@@ -11,6 +11,7 @@ namespace Core_API.Mappers
         ArticleTitle = source.ArticleTitle,
         ArticleContent = source.ArticleContent,
         ArticlePicture = source.ArticlePicture,
+        ArticlePictureCredit = source.ArticlePictureCredit,
         DateTimeCreated = source.DateTimeCreated,
         TimeStampUploaded = source.TimeStampUploaded
         };

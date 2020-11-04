@@ -31,8 +31,6 @@ namespace CoreAPITests
             });
         }
 
-
-
         [Fact]
         public async Task Get_Should_Retrieve_NewsArticle()
         {
@@ -91,39 +89,7 @@ namespace CoreAPITests
         [Fact]
         public async Task Delete_Should_Succeed_NewsArticle()
         {
-             var client = _factory.WithWebHostBuilder(builder =>
-            {
-                builder.ConfigureServices(services =>
-                {
-                    var serviceProvider = services.BuildServiceProvider();
-
-                    using (var scope = serviceProvider.CreateScope())
-                    {
-                        var scopedServices = scope.ServiceProvider;
-                        var db = scopedServices
-                            .GetRequiredService<NewsArticleContext>();
-                        var logger = scopedServices
-                            .GetRequiredService<ILogger<Core_API.Startup>>();
-
-                        try
-                        {
-                            Utilities.ReinitializeDbForTests(db);
-                        }
-                        catch (Exception ex)
-                        {
-                            logger.LogError(ex, "An error occurred seeding " +
-                                "the database with test messages. Error: {Message}",
-                                ex.Message);
-                        }
-                    }
-                });
-            })
-       .CreateClient(new WebApplicationFactoryClientOptions
-       {
-           AllowAutoRedirect = false
-       });
-
-            var response = await client.DeleteAsync("api/NewsArticles/1");
+            var response = await _client.DeleteAsync("api/NewsArticles/1");
 
             response.StatusCode.Should().Be(HttpStatusCode.OK);
         }

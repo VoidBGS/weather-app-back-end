@@ -43,9 +43,6 @@ namespace Core_API.Controllers
             return newsArticle.NewsArticleToViewModel();
         }
 
-        // PUT: api/NewsArticles/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
         public async Task<IActionResult> PutNewsArticle(int id, NewsArticleViewModel newsArticleViewModel)
         {
@@ -62,6 +59,7 @@ namespace Core_API.Controllers
             newsArticle.ArticleTitle = newsArticleViewModel.ArticleTitle;
             newsArticle.ArticleContent = newsArticleViewModel.ArticleContent;
             newsArticle.ArticlePicture = newsArticleViewModel.ArticlePicture;
+            newsArticle.ArticlePictureCredit = newsArticleViewModel.ArticlePictureCredit;
             newsArticle.UserID = "1";
 
             try
@@ -83,9 +81,6 @@ namespace Core_API.Controllers
             return NoContent();
         }
 
-        // POST: api/NewsArticles
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
         public async Task<ActionResult<NewsArticleViewModel>> PostNewsArticle(NewsArticleViewModel newsArticleViewModel)
         {
@@ -95,6 +90,7 @@ namespace Core_API.Controllers
                 ArticleTitle = newsArticleViewModel.ArticleTitle,
                 ArticleContent = newsArticleViewModel.ArticleContent,
                 ArticlePicture = newsArticleViewModel.ArticlePicture,
+                ArticlePictureCredit = newsArticleViewModel.ArticlePictureCredit,
                 DateTimeCreated = DateTime.Now.ToString("hh:mm | dd-MM-yyyy"),
                 TimeStampUploaded = DateTime.Now
 
