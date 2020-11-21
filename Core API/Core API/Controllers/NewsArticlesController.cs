@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Core_API.Data;
 using Core_API.Models;
@@ -44,6 +45,7 @@ namespace Core_API.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize]
         public async Task<IActionResult> PutNewsArticle(int id, NewsArticleViewModel newsArticleViewModel)
         {
             if (id != newsArticleViewModel.ID)

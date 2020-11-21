@@ -47,7 +47,27 @@ namespace Core_API
 
             services.AddDbContext<NewsArticleContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddControllers();
-        }
+
+            // Adding Authentication  ---- TO DO -- UPDATE PACKAGES to V5
+        //    services.AddAuthentication(options =>
+        //    {
+        //        options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+        //        options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+        //        options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+        //    }).AddJwtBearer(options =>
+        //    {
+        //        options.SaveToken = true;
+        //        options.RequireHttpsMetadata = false;
+        //        options.TokenValidationParameters = new TokenValidationParameters()
+        //        {
+        //            ValidateIssuer = true,
+        //            ValidateAudience = true,
+        //            ValidAudience = Configuration["JWT:ValidAudience"],
+        //            ValidIssuer = Configuration["JWT:ValidIssuer"],
+        //            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JWT:Secret"]))
+        //        };
+        //    });
+        //}
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
