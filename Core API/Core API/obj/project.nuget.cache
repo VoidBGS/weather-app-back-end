@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "TVEcZFANuYRkH/UCI1k8A5MtEtChAVIxL/t3ZXYq2mGxtxkqxoc9VoHNJnm2Ev4lE6JfOnQwXYLBOf/Ed0QO5Q==",
+  "dgSpecHash": "ZEGivYEtcaxyh1I1xyGDX1k6gsoUsB7VrSNkvr+mhkyvIqtd8/v4K4WdHXZ09iXsFg/VNw0CkTFNA9aZWtV4Aw==",
   "success": true,
   "projectFilePath": "D:\\Users\\admin\\Desktop\\2020 University\\Semester 3 - Demand Based\\Individual Project\\Project\\weatherhoven-backend\\Core API\\Core API\\Core API.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,7 @@
     "C:\\Users\\admin\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\admin\\.nuget\\packages\\microsoft.aspnetcore.authentication.cookies\\2.2.0\\microsoft.aspnetcore.authentication.cookies.2.2.0.nupkg.sha512",
     "C:\\Users\\admin\\.nuget\\packages\\microsoft.aspnetcore.authentication.core\\2.2.0\\microsoft.aspnetcore.authentication.core.2.2.0.nupkg.sha512",
+    "C:\\Users\\admin\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\3.1.9\\microsoft.aspnetcore.authentication.jwtbearer.3.1.9.nupkg.sha512",
     "C:\\Users\\admin\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\3.1.9\\microsoft.aspnetcore.cryptography.internal.3.1.9.nupkg.sha512",
     "C:\\Users\\admin\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\3.1.9\\microsoft.aspnetcore.cryptography.keyderivation.3.1.9.nupkg.sha512",
     "C:\\Users\\admin\\.nuget\\packages\\microsoft.aspnetcore.dataprotection\\2.2.0\\microsoft.aspnetcore.dataprotection.2.2.0.nupkg.sha512",

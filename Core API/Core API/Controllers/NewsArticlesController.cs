@@ -45,7 +45,6 @@ namespace Core_API.Controllers
         }
 
         [HttpPut("{id}")]
-        [Authorize]
         public async Task<IActionResult> PutNewsArticle(int id, NewsArticleViewModel newsArticleViewModel)
         {
             if (id != newsArticleViewModel.ID)
