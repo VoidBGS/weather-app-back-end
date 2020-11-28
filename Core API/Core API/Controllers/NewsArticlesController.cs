@@ -25,14 +25,14 @@ namespace Core_API.Controllers
 
         // GET: api/NewsArticles
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<NewsArticleViewModel>>> GetNewsArticles()
+        public async Task<ActionResult<IEnumerable<NewsArticle>>> GetNewsArticles()
         {
-            return await _context.NewsArticles.Select(x => (x.NewsArticleToViewModel())).ToListAsync();
+            return await _context.NewsArticles.ToListAsync();
         }
 
         // GET: api/NewsArticles/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<NewsArticleViewModel>> GetNewsArticle(int id)
+        public async Task<ActionResult<NewsArticle>> GetNewsArticle(int id)
         {
             var newsArticle = await _context.NewsArticles.Where(x => x.ID == id).FirstOrDefaultAsync();
 
@@ -41,7 +41,7 @@ namespace Core_API.Controllers
                 return NotFound();
             }
 
-            return newsArticle.NewsArticleToViewModel();
+            return newsArticle;
         }
 
         [HttpPut("{id}")]
@@ -51,6 +51,7 @@ namespace Core_API.Controllers
             {
                 return BadRequest();
             }
+
             var newsArticle = await _context.NewsArticles.FindAsync(id);
             if(newsArticle == null)
             {
@@ -61,7 +62,7 @@ namespace Core_API.Controllers
             newsArticle.ArticleContent = newsArticleViewModel.ArticleContent;
             newsArticle.ArticlePicture = newsArticleViewModel.ArticlePicture;
             newsArticle.ArticlePictureCredit = newsArticleViewModel.ArticlePictureCredit;
-            newsArticle.UserID = "1";
+            newsArticle.AuthorName = newsArticleViewModel.AuthorName;
 
             try
             {
@@ -87,7 +88,7 @@ namespace Core_API.Controllers
         {
             var newsArticle = new NewsArticle
             {
-                UserID = "1",
+                AuthorName = newsArticleViewModel.AuthorName,
                 ArticleTitle = newsArticleViewModel.ArticleTitle,
                 ArticleContent = newsArticleViewModel.ArticleContent,
                 ArticlePicture = newsArticleViewModel.ArticlePicture,
@@ -100,7 +101,7 @@ namespace Core_API.Controllers
             _context.NewsArticles.Add(newsArticle);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetNewsArticle), new { id = newsArticleViewModel.ID }, newsArticle.NewsArticleToViewModel());
+            return CreatedAtAction(nameof(GetNewsArticle), new { id = newsArticleViewModel.ID }, newsArticle.NewsArticleToViewModel(newsArticleViewModel.AuthorName));
         }
 
         // DELETE: api/NewsArticles/5
@@ -116,7 +117,7 @@ namespace Core_API.Controllers
             _context.NewsArticles.Remove(newsArticle);
             await _context.SaveChangesAsync();
 
-            return newsArticle.NewsArticleToViewModel();
+            return NoContent();
         }
 
         private bool NewsArticleExists(int id)

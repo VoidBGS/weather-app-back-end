@@ -10,7 +10,7 @@ namespace Core_API.Models
         [Key]
         public int ID { get; set; }
 
-        public string UserID { get; set; }
+        public string AuthorName { get; set; }
 
         public string ArticleTitle { get; set; }
 

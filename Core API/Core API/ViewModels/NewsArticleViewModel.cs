@@ -9,6 +9,8 @@ namespace Core_API.Models
     {
         public int ID { get; set; }
 
+        public string AuthorName { get; set; }
+
         public string ArticleTitle { get; set; }
 
         public string ArticleContent { get; set; }
