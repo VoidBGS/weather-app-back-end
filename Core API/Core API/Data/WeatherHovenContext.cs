@@ -3,13 +3,15 @@ using Core_API.Models;
 
 namespace Core_API.Data
 {
-    public class NewsArticleContext: DbContext
+    public class WeatherHovenContext: DbContext
     {
-        public NewsArticleContext(DbContextOptions<NewsArticleContext> options)
+        public WeatherHovenContext(DbContextOptions<WeatherHovenContext> options)
            : base(options)
         {
         }
 
         public DbSet<NewsArticle> NewsArticles { get; set; }
+
+        public DbSet<Picture> Pictures { get; set; }
     }
 }

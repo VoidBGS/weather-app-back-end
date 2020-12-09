@@ -20,14 +20,14 @@ namespace CoreAPITests
             {
                 var descriptor = services.SingleOrDefault(
                     d => d.ServiceType ==
-                        typeof(DbContextOptions<NewsArticleContext>));
+                        typeof(DbContextOptions<WeatherHovenContext>));
 
                 if (descriptor != null)
                 {
                     services.Remove(descriptor);
                 }
 
-                services.AddDbContext<NewsArticleContext>((options, context) =>
+                services.AddDbContext<WeatherHovenContext>((options, context) =>
                 {
                     context.UseInMemoryDatabase("InMemoryDbForTesting");
                 });
@@ -38,7 +38,7 @@ namespace CoreAPITests
                 using (var scope = sp.CreateScope())
                 {
                     var scopedServices = scope.ServiceProvider;
-                    var db = scopedServices.GetRequiredService<NewsArticleContext>();
+                    var db = scopedServices.GetRequiredService<WeatherHovenContext>();
                     var logger = scopedServices.GetRequiredService<ILogger<CustomWebApplicationFactory<TStartup>>>();
 
                     db.Database.EnsureCreated();

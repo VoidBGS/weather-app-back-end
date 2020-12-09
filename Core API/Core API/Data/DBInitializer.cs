@@ -8,7 +8,7 @@ namespace Core_API.Data
 {
     public static class DBInitializer
     {
-        public static void Initialize(NewsArticleContext context)
+        public static void Initialize(WeatherHovenContext context)
         {
             context.Database.EnsureCreated();
 

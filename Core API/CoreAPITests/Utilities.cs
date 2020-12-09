@@ -8,14 +8,14 @@ namespace CoreAPITests
 {
     public static class Utilities
     {
-        public static void InitializeDbForTests(NewsArticleContext db)
+        public static void InitializeDbForTests(WeatherHovenContext db)
         {
             db.NewsArticles.AddRange(GetSeedingMessages());
 
             db.SaveChanges();
         }
 
-        public static void ReinitializeDbForTests(NewsArticleContext db)
+        public static void ReinitializeDbForTests(WeatherHovenContext db)
         {
             db.NewsArticles.RemoveRange(db.NewsArticles);
             InitializeDbForTests(db);

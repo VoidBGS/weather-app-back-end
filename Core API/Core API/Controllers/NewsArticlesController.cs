@@ -16,9 +16,9 @@ namespace Core_API.Controllers
     [ApiController]
     public class NewsArticlesController : ControllerBase
     {
-        private readonly NewsArticleContext _context;
+        private readonly WeatherHovenContext _context;
 
-        public NewsArticlesController(NewsArticleContext context)
+        public NewsArticlesController(WeatherHovenContext context)
         {
             _context = context;
         }
@@ -62,7 +62,6 @@ namespace Core_API.Controllers
             newsArticle.ArticleContent = newsArticleViewModel.ArticleContent;
             newsArticle.ArticlePicture = newsArticleViewModel.ArticlePicture;
             newsArticle.ArticlePictureCredit = newsArticleViewModel.ArticlePictureCredit;
-            newsArticle.AuthorName = newsArticleViewModel.AuthorName;
 
             try
             {

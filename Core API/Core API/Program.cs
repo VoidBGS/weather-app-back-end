@@ -28,7 +28,7 @@ namespace Core_API
 
                 try
                 {
-                    var context = services.GetRequiredService<NewsArticleContext>();
+                    var context = services.GetRequiredService<WeatherHovenContext>();
                     DBInitializer.Initialize(context);
                 }
                 catch (Exception ex)
