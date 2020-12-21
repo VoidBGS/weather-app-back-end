@@ -27,7 +27,7 @@ namespace Core_API.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<NewsArticle>>> GetNewsArticles()
         {
-            return await _context.NewsArticles.OrderBy(x => x.TimeStampUploaded).ToListAsync();
+            return await _context.NewsArticles.OrderByDescending(x => x.TimeStampUploaded).ToListAsync();
         }
 
         // GET: api/NewsArticles/5
