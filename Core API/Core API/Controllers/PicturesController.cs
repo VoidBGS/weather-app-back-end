@@ -45,8 +45,7 @@ namespace Core_API.Controllers
             return picture;
         }
 
-        // POST api/<PicturesController>
-
+        // POST api/<PicturesController
         [HttpPost]
         public async Task<ActionResult<PictureViewModel>> PostPictureOfTheDay(PictureViewModel pictureViewModel)
         {
@@ -62,6 +61,23 @@ namespace Core_API.Controllers
             await _context.SaveChangesAsync();
 
             return CreatedAtAction(nameof(GetPicturesOfTheDay), new { id = picture.Id }, picture.PictureToViewModel(picture.AuthorName));
+        }
+
+        // DELETE api/<PicturesController/{id}
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<PictureViewModel>> DeletePictureOfTheDay(int id)
+        {
+            var picture = await _context.Pictures.FindAsync(id);
+
+            if (picture == null)
+            {
+                return NotFound();
+            }
+
+            _context.Pictures.Remove(picture);
+            await _context.SaveChangesAsync();
+
+            return NoContent();
         }
     }
 }
